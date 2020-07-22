@@ -1,5 +1,14 @@
 
+function appd(){
+  var template = $("#cd0").html();
+  var compiled = Handlebars.compile(template);
 
+  var context = {"poster":"posters2", "title":"titles2", "author":"authors2", "year":"years2"}
+  var target = $("#cd");
+  var html = compiled(context);
+  target.append(html);
+
+}
 
 function getApi(){
 
@@ -9,12 +18,16 @@ function getApi(){
     success: function(data, state) {
       var success = data['success'];
       var value = data['response'];
-      var title = value['title'];
-      // var poster = data[response.poster];
-      // var title = data[response.title];
+      var titles = value.map(anon => anon.title);
+      var posters = value.map(anon => anon.poster);
+      var authors = value.map(anon => anon.author);
+      var genre = value.map(anon => anon.genre);
+      var year = value.map(anon => anon.year);
+
+
 
       if (success) {
-        console.log(title);
+        console.log(titles, authors);
 
       } else {
         console.log("Error");
@@ -31,6 +44,7 @@ function getApi(){
 
 function init (){
 getApi();
+appd();
 }
 
 
