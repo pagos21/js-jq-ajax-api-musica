@@ -67,9 +67,12 @@ header img {
     color: grey;
 }
 
+.hide{
+  display: none;
+}
+
 
 @media all and (max-width: 1000px)  {
-
   .container{
     text-align: center;
     width: auto;

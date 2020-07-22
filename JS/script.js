@@ -10,6 +10,11 @@ function appd(){
 
 }
 
+function genere(){
+  var valore= $("#slt").val();
+  console.log(valore);
+}
+
 function getApi(){
 
   $.ajax({
@@ -18,27 +23,22 @@ function getApi(){
     success: function(data, state) { //Al termine della connessione al server (success)
       var success = data['success'];
       var value = data['response'];
-
-      // Handlebars
-      var template = $("#template").html();
-      var compiled = Handlebars.compile(template);
-      var target = $(".cds-container");
-
-      for (var i = 0; i < value.length; i++) {
-        console.log(value[i]);
-        var context = compiled(value[i]);
-        target.append(context);
-      }
-
       // var titles = value.map(anon => anon.title);
       // var posters = value.map(anon => anon.poster);
       // var authors = value.map(anon => anon.author);
       // var genre = value.map(anon => anon.genre);
       // var year = value.map(anon => anon.year);
-
-
-
       if (success) {
+        // Handlebars
+        var template = $("#template").html();
+        var compiled = Handlebars.compile(template);
+        var target = $(".cds-container");
+
+        for (var i = 0; i < value.length; i++) {
+          console.log(value[i]);
+          var context = compiled(value[i]);
+          target.append(context);
+        }
 
       } else {
         console.log("Error");
